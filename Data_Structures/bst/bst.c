@@ -3,7 +3,7 @@
 #include "bst.h"
 
 struct bst *root = NULL;
-
+//Create item
 struct bst *create_item(int value)
 {
   struct bst * tmp = (struct bst *)malloc(sizeof(struct bst));
@@ -20,7 +20,7 @@ struct bst *find_node(int value, struct bst *tmp) {
   }
   else {
      if (value == tmp->value) {
-       printf("return node %d\n", tmp->value);
+       printf("Return node %d\n", tmp->value);
        return tmp;
      }
      else if(value < tmp->value) {
