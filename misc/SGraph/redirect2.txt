@@ -1,0 +1,11 @@
+chapter2
+new_file
+new_file1
+new_file2
+redirect2.txt
+redirect_list.txt
+Umask
+#####################################################
+Testing redirection
+small file... 
+no contents

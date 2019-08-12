@@ -1,0 +1,13 @@
+CAR_FWD   = 1
+CAR_BACK  = 2
+CAR_LEFT  = 3
+CAR_RIGHT = 4
+
+CAM_LEFT       = 10
+CAM_EXTR_LEFT  = 11
+CAM_RIGHT      = 12
+CAM_EXTR_RIGHT = 13
+CAM_UP         = 14
+CAM_DOWN       = 15 
+CAM_RESET      = 16
+

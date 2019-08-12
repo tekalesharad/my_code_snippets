@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $#  -lt 1 ];
+then
+	echo "enter a file name"
+	exit
+fi
+
+if [ -f ./$1 ];
+then
+	cp ./$1 ./$1.backup
+	echo “Done.”
+else
+	echo “This file does not exist.”
+	exit 1
+fi
