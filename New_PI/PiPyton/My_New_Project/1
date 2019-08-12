@@ -1,0 +1,51 @@
+#! /usr/bin/env python
+
+import RPi.GPIO as GPIO
+import time
+
+MotorPin_A=16
+MotorPin_B=18
+
+
+def setup():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(MotorPin_A, GPIO.OUT)
+    GPIO.setup(MotorPin_B, GPIO.OUT)
+    motorStop()
+    global pwm_b
+    pwm_b = GPIO.PWM(MotorPin_B, 2000)
+    print "setup done.."
+
+def motorStop():
+    GPIO.output(MotorPin_A, GPIO.HIGH)
+    GPIO.output(MotorPin_B, GPIO.LOW)
+    #global pwm_b
+    #pwm_b.stop()
+
+
+def motor(status):
+    global pwm_b
+    GPIO.output(MotorPin_A, GPIO.HIGH)
+    pwm_b.start(100)
+    pwm_b.ChangeDutyCycle(100-status)
+    print "runn motor.."
+
+def destroy():
+    motorStop()
+    GPIO.cleanup()
+
+if __name__ == '__main__':
+    #GPIO.cleanup()
+    setup()
+    try:
+        i = 0
+        time.sleep(0.1)
+        while ( i < 100 ):
+            time.sleep(0.1)
+            motor(i)
+            i += 2
+        destroy()
+    except KeyboardInterrupt:
+        destroy()
+
