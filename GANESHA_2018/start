@@ -1,0 +1,3 @@
+cd /home/pi/GANESHA
+python  L289N_motor_working_main.py
+
