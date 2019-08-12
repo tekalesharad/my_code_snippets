@@ -1,0 +1,1 @@
+cmd_/home/pi/Projects/PiDrivers/7th_intr_workq_tsklet/rspi_intr_workq_tasklet.ko := ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/pi/Projects/PiDrivers/7th_intr_workq_tsklet/rspi_intr_workq_tasklet.ko /home/pi/Projects/PiDrivers/7th_intr_workq_tsklet/rspi_intr_workq_tasklet.o /home/pi/Projects/PiDrivers/7th_intr_workq_tsklet/rspi_intr_workq_tasklet.mod.o ;  true
