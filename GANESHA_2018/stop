@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PID=`pidof python`
+echo $PID
+kill -USR1 $PID 
+
+#kill -9
