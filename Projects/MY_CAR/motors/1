@@ -1,0 +1,64 @@
+import RPi.GPIO as GPIO
+import time
+import sys
+from car_gpios import *
+
+#SERVO_PIN_1 = 11
+def setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(SERVO_PIN_1, GPIO.OUT)
+    #GPIO.setup(SERVO_PIN_2, GPIO.OUT)
+    print "set-up()"
+    global mtr_horiz
+    #global mtrVertical
+    mtr_horiz=GPIO.PWM(SERVO_PIN_1, 50)
+    #mtrVertical=GPIO.PWM(SERVO_PIN_2, 50)
+    mtr_horiz.start(2)
+    #mtrVertical.start(2)
+    time.sleep(2)
+
+def destroy():
+    global mtr_horiz
+    #global mtrVertical
+    GPIO.output(SERVO_PIN_1, GPIO.LOW)
+    #GPIO.output(SERVO_PIN_2, GPIO.LOW)
+    mtr_horiz.stop()
+    #mtrVertical.stop()
+    print "destroy-()"
+    GPIO.cleanup()
+
+def servo_motor():
+    while True:
+        global mtr_horiz
+        mtr_horiz.ChangeDutyCycle(0)  # turn towards 90 degree
+        print "val-0"
+        time.sleep(2) # sleep 1 second
+        #global mtrVertical
+        #mtr_horiz.ChangeDutyCycle(6)  # turn towards 90 degree
+        print "val-6"
+        time.sleep(4) # sleep 1 second
+        #mtrVertical.ChangeDutyCycle(6)  # turn towards 90 degree
+        #time.sleep(1) # sleep 1 second
+        #mtr_horiz.ChangeDutyCycle(1)  # turn towards 0 degree
+        #print "val-1"
+        #time.sleep(1) # sleep 1 second
+        #mtrVertical.ChangeDutyCycle(1)  # turn towards 0 degree
+        time.sleep(4) # sleep 1 second
+       # mtr_horiz.ChangeDutyCycle(11) # turn towards 180 degree
+        print "val-11"
+        time.sleep(4) # sleep 1 second 
+        #mtrVertical.ChangeDutyCycle(11) # turn towards 180 degree
+        #time.sleep(1) # sleep 1 second 
+        print "server_motor-()"
+        mtr_horiz.ChangeDutyCycle(1)  # turn towards 90 degree
+        print "val-0"
+        time.sleep(2) # sleep 1 second
+ 
+
+if __name__ == '__main__':
+    setup()
+    try:
+        servo_motor()
+    except KeyboardInterrupt:
+        destroy()
+

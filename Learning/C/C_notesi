@@ -1,0 +1,54 @@
+1. By default all structs are padded by compiler
+2. If one doesnt want it to be padded by complier, one has to use 
+  a. At end of struct  __attribute__ ((packed))
+  b. Argument to gcc: -fpack-struct
+  c. Or one can use pragma in code:  #pragma pack(1)
+3. size of stuct-padding is calculated using the heighest variable length
+       Reference                         SIZE
+  struct aa { int *t, char a }            = 16
+  struct aa { int t, char a }             =  8
+  struct aa { short t, char a }           = 4
+  struct aa { char t, char a }            = 2
+  struct aa { char aa[9], char  aa1[10] } = 19  
+  struct aa { char aa[9], short aa1[10] } = 30  
+  struct aa { char aa[9], int  aa1[10] } =  52  
+  struct aa { char aa[9], int * aa1[10] } = 96
+  struct aa { char aa[9], int  p  }      = 16
+  struct aa { char aa[9], int * aa } =     24
+4. If a pointer is present  in an inner structure, it will take that has highest member and calculate the padding info
+
+5. Bit fields: 
+  - Spl unnamed byte 0 is used to force align on next boundry
+       struct aa {
+           unsigned int : 0;
+       }
+  - Cannot have pointer to bit field as they may not start at byte boundry
+  - Struct cannot have static members including bit fields
+  - Array of bit fields not allowed
+  
+  - bit are stored in low to high or vicevera order 
+
+ struct foo6 {
+    short s;       /* 2 bytes */
+    char c;        /* 1 byte */
+    int flip:1;    /* total 1 bit */
+    int nybble:4;  /* total 5 bits */
+    int pad1:3;    /* pad to an 8-bit boundary */
+    int septet:7;  /* 7 bits */
+    int pad2:25;   /* pad to 32 bits */
+};
+
+OR
+struct foo6 {
+    short s;       /* 2 bytes */
+    char c;        /* 1 byte */
+    int pad1:3;    /* pad to an 8-bit boundary */
+    int flip:1;    /* total 1 bit */
+    int nybble:4;  /* total 5 bits */
+    int pad2:25;   /* pad to 32 bits */
+    int septet:7;  /* 7 bits */
+};
+
+
+
+ 

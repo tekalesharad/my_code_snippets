@@ -1,0 +1,18 @@
+
+#1. Distance (Obstacle)
+#is_danger = false
+#change_directon()
+#2. Sound
+#Led
+#Buzzer
+#Voice
+#Battery
+#Camera
+#Temperature/Humidity
+#LIGHT
+#Object recogination
+
+#i10 Secs - 
+# Distace = 100 inches = 2.54mts
+# Time = 10Sec
+# Speed = Dist/time = .2mts/sec
